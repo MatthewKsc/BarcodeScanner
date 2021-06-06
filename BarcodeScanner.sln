@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeScanner", "BarcodeScanner\BarcodeScanner.csproj", "{06FF4C66-618E-4E02-AE30-8A16540DEDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcodeScanner", "BarcodeScanner\BarcodeScanner.csproj", "{06FF4C66-618E-4E02-AE30-8A16540DEDDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF3870F8-469A-4842-85ED-0E64068EBD99}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BardcodeScanner_Tests", "BardcodeScanner_Tests\BardcodeScanner_Tests.csproj", "{674AB092-36FD-4CC9-91FC-3138FDDF4D43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,10 @@ Global
 		{06FF4C66-618E-4E02-AE30-8A16540DEDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06FF4C66-618E-4E02-AE30-8A16540DEDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06FF4C66-618E-4E02-AE30-8A16540DEDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{674AB092-36FD-4CC9-91FC-3138FDDF4D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{674AB092-36FD-4CC9-91FC-3138FDDF4D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{674AB092-36FD-4CC9-91FC-3138FDDF4D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{674AB092-36FD-4CC9-91FC-3138FDDF4D43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
