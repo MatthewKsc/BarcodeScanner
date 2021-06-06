@@ -1,6 +1,5 @@
-﻿# TeamProject-Manager-Api
+﻿# BarcodeScanner
 Project Idea is to create website to validate many types of barcodes for example EAN-8, EAN-13.
-
 
 ## Technologies and Tools
 
