@@ -19,9 +19,15 @@ namespace BardcodeScanner_Tests.ServiceTests
             this.service = new EANService();
         }
 
+        //TODO get TestCases from file with EAN8 and EAN13 sets of data
+
         [Test]
-        public void EAN_8_Success_Pass() {
-            var ean = new EAN("12345670", EANTypes.EAN8);
+        [TestCase("3498125")]
+        [TestCase("12345670")]
+        [TestCase("36455065")]
+        [TestCase("8723093")]
+        public void Valid_EAN8_Barcode_Test(string barcode) {
+            var ean = new EAN(barcode, EANTypes.EAN8);
 
             var result = service.Scan(ean);
 
@@ -30,30 +36,55 @@ namespace BardcodeScanner_Tests.ServiceTests
         }
 
         [Test]
-        public void EAN_8_Failure_Pass() {
-            var noBarcode = new EAN("", EANTypes.EAN8);
-            var wrongEANType = new EAN("", EANTypes.EAN13);
-            var noEANType = new EAN("12345670", EANTypes.None);
+        [TestCase("invalids")]
+        [TestCase("")]
+        [TestCase("dwdaw12345670dwa")]
+        [TestCase("36455064")]
+        public void Invalid_EAN8_Barcode_Test(string barcode) {
+            var ean = new EAN(barcode, EANTypes.EAN8);
 
-            var noBarcodeResult = service.Scan(noBarcode);
-            var wrongEANTypeResult = service.Scan(wrongEANType);
-            var noEANTypeResult = service.Scan(noEANType);
+            var result = service.Scan(ean);
 
-
-            Assert.AreEqual(false, noBarcodeResult);
-            Assert.AreEqual(false, wrongEANTypeResult);
-            Assert.AreEqual(false, noEANTypeResult);
+            Assert.AreEqual(false, result);
+            Assert.AreNotEqual(true, result);
         }
 
         [Test]
-        public void EAN_13_Success_Pass() {
+        [TestCase("5485415953755")]
+        [TestCase("1372177298566")]
+        [TestCase("691536044738")]
+        [TestCase("953053302624")]
+        public void Valid_EAN13_Test(string barcode) {
+            var ean = new EAN(barcode, EANTypes.EAN13);
 
+            var result = service.Scan(ean);
+
+            Assert.AreEqual(true, result);
+            Assert.AreNotEqual(false, result);
         }
 
         [Test]
-        public void EAN_13_Failure_Pass() {
+        [TestCase("invalids")]
+        [TestCase("")]
+        [TestCase("dwdaw7192131489335dwa")]
+        [TestCase("4427328265695")]
+        public void Invalid_EAN8_Test(string barcode) {
+            var ean = new EAN(barcode, EANTypes.EAN13);
 
+            var result = service.Scan(ean);
+
+            Assert.AreEqual(false, result);
+            Assert.AreNotEqual(true, result);
         }
 
+        [Test]
+        public void None_Type_EAN_Test() {
+            var eanNoType = new EAN("", EANTypes.None);
+
+            var result = service.Scan(eanNoType);
+
+            Assert.AreEqual(false, result);
+            Assert.AreNotEqual(true, result);
+        }
     }
 }
