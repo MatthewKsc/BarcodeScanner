@@ -9,7 +9,18 @@ using System.Threading.Tasks;
 
 namespace BarcodeScanner.Service
 {
-    public class EANService : IBarcodeService<EAN> {
+    public class EANService : IEANService {
+        public List<EAN> GetEAN() {
+            List<EAN> EANs = new List<EAN>() {
+                new EAN{Barcode= "265792032008" ,EANType= EANTypes.EAN13},
+                new EAN{Barcode= "3702235451288" ,EANType= EANTypes.EAN13},
+                new EAN{Barcode= "90733383" ,EANType= EANTypes.EAN8},
+                new EAN{Barcode= "55056533" ,EANType= EANTypes.EAN8}
+            };
+
+            return EANs;
+        }
+
         public bool Scan(EAN input) {
             StringBuilder EANstring = new StringBuilder().Append(input.Barcode);
 

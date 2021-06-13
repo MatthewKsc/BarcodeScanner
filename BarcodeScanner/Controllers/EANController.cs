@@ -13,19 +13,28 @@ namespace BarcodeScanner.Controllers
     [Route("api/[controller]")]
     public class EANController : ControllerBase
     {
-        private readonly IBarcodeService<EAN> service;
+        private readonly IEANService service;
 
-        public EANController(IBarcodeService<EAN> service) {
+        public EANController(IEANService service) {
             this.service = service;
         }
 
-
         [HttpGet]
+        public ActionResult exampleEAN() {
+            List<EAN> exampleEAN = service.GetEAN();
+
+            return Ok(exampleEAN);
+        }
+
+        [HttpPost]
         public ActionResult checkEAN([FromBody] EAN ean) {
+            if (string.IsNullOrEmpty(ean.Barcode) || string.IsNullOrWhiteSpace(ean.Barcode))
+                return BadRequest("Please provide EAN code");
+
             var result = service.Scan(ean);
 
             if (!result) {
-                return BadRequest("Wrong EAN code provided");
+                return BadRequest("Invalid EAN provided");
             }
 
             return Ok("EAN is correct");
