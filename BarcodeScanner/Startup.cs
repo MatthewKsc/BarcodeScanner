@@ -26,6 +26,7 @@ namespace BarcodeScanner {
         public void ConfigureServices(IServiceCollection services) {
 
             services.AddScoped<IEANService, EANService>();
+            services.AddScoped<IControlNumberService, ControlNumberService>();
 
             services.AddAutoMapper(this.GetType().Assembly);
 

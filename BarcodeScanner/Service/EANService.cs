@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 namespace BarcodeScanner.Service
 {
     public class EANService : IEANService {
+        private readonly IControlNumberService controlNumberService;
+
+        public EANService(IControlNumberService controlNumberService) {
+            this.controlNumberService = controlNumberService;
+        }
+
         public List<EAN> GetEAN() {
             List<EAN> EANs = new List<EAN>() {
                 new EAN{Barcode= "265792032008" ,EANType= EANTypes.EAN13},
@@ -33,7 +39,7 @@ namespace BarcodeScanner.Service
                 Regex EAN8Check = new Regex("^[0-9]{8}$");
 
                 if (EAN8Check.IsMatch(EANstring.ToString())) {
-                    return checkControlNumber(EANstring.ToString().Substring(0, 8));
+                    return controlNumberService.CheckControlNumber(EANstring.ToString().Substring(0, 8));
                 }
                 else {
                     return false;
@@ -50,7 +56,7 @@ namespace BarcodeScanner.Service
                 Regex EAN13Check = new Regex("^[0-9]{13}$");
 
                 if (EAN13Check.IsMatch(EANstring.ToString())) {
-                    return checkControlNumber(EANstring.ToString().Substring(0, 13));
+                    return controlNumberService.CheckControlNumber(EANstring.ToString().Substring(0, 13));
                 }
                 else {
                     return false;
@@ -58,41 +64,6 @@ namespace BarcodeScanner.Service
             }
 
             return false;
-        }
-
-        private bool checkControlNumber(string ean) {
-            char[] eanArray = ean.ToCharArray();
-            int sumOdds = 0;
-            int sumEven = 0;
-            int controlNumber;
-            bool switcher = true;
-            for(int i=eanArray.Length-2; i>=0; i--) {
-                if (switcher) {
-                    sumOdds += (int) Char.GetNumericValue(eanArray[i]);
-                    switcher = false;
-                }
-                else {
-                    sumEven += (int)Char.GetNumericValue(eanArray[i]);
-                    switcher = true;
-                }
-            }
-
-            sumOdds *= 3;
-
-            if ((sumOdds + sumEven) % 10==0) {
-                controlNumber = 0;
-            }
-            else {
-                controlNumber = 10 - ((sumOdds + sumEven) % 10);
-            }
-
-            if (controlNumber == (int) Char.GetNumericValue(eanArray[eanArray.Length - 1])) {
-                return true;
-            }
-            else {
-                return false;
-            }
-
         }
     }
 }

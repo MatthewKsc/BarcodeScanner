@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using BarcodeScanner.Service;
 using NUnit.Framework;
@@ -13,10 +14,12 @@ namespace BardcodeScanner_Tests.ServiceTests
     public class EANService_Test
     {
 
-        private readonly EANService service;
+        private readonly IEANService service;
+        private readonly IControlNumberService controlNumberService;
 
         public EANService_Test() {
-            this.service = new EANService();
+            this.controlNumberService = new ControlNumberService();
+            this.service = new EANService(this.controlNumberService);
         }
 
         //TODO get TestCases from file with EAN8 and EAN13 sets of data

@@ -34,10 +34,11 @@ namespace BarcodeScanner.Controllers
 
         [HttpPost]
         public ActionResult checkEAN([FromBody] EANDto dto) {
-            var ean = mapper.Map<EAN>(dto);
 
-            if (string.IsNullOrEmpty(ean.Barcode) || string.IsNullOrWhiteSpace(ean.Barcode))
+            if (string.IsNullOrEmpty(dto.Barcode) || string.IsNullOrWhiteSpace(dto.Barcode))
                 return BadRequest("Please provide EAN code");
+
+            var ean = mapper.Map<EAN>(dto);
 
             var result = service.Scan(ean);
 
