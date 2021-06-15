@@ -1,4 +1,6 @@
-﻿using BarcodeScanner.Interfaces;
+﻿using AutoMapper;
+using BarcodeScanner.DTOs;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,20 +16,26 @@ namespace BarcodeScanner.Controllers
     public class EANController : ControllerBase
     {
         private readonly IEANService service;
+        private readonly IMapper mapper;
 
-        public EANController(IEANService service) {
+        public EANController(IEANService service, IMapper mapper) {
             this.service = service;
+            this.mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult exampleEAN() {
             List<EAN> exampleEAN = service.GetEAN();
 
-            return Ok(exampleEAN);
+            List<EANDto> result = mapper.Map<List<EANDto>>(exampleEAN);
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult checkEAN([FromBody] EAN ean) {
+        public ActionResult checkEAN([FromBody] EANDto dto) {
+            var ean = mapper.Map<EAN>(dto);
+
             if (string.IsNullOrEmpty(ean.Barcode) || string.IsNullOrWhiteSpace(ean.Barcode))
                 return BadRequest("Please provide EAN code");
 
