@@ -13,23 +13,14 @@ namespace BarcodeScanner.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EANController : ControllerBase
+    public class BarcodeCheckController : ControllerBase
     {
-        private readonly IEANService service;
+        private readonly IBarcodeService service;
         private readonly IMapper mapper;
 
-        public EANController(IEANService service, IMapper mapper) {
+        public BarcodeCheckController(IBarcodeService service, IMapper mapper) {
             this.service = service;
             this.mapper = mapper;
-        }
-
-        [HttpGet]
-        public ActionResult exampleEAN() {
-            List<BarcodeModel> exampleEAN = service.GetEAN();
-
-            List<BarcodeModelDto> result = mapper.Map<List<BarcodeModelDto>>(exampleEAN);
-
-            return Ok(result);
         }
 
         [HttpPost]
