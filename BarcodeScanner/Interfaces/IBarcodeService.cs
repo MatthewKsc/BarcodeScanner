@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace BarcodeScanner.Interfaces
 {
-    public interface IBarcodeService<T>
-    {
-        bool Scan(T input);
+    public interface IBarcodeService : IBaseService {
+        List<BarcodeModel> GetBarcodes(BarcodeType barcodeType);
     }
 }

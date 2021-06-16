@@ -11,15 +11,15 @@ using NUnit.Framework;
 namespace BardcodeScanner_Tests.ServiceTests
 {
     [TestFixture]
-    public class EANService_Test
+    public class BarcodeService_Test
     {
 
-        private readonly IEANService service;
+        private readonly IBarcodeService service;
         private readonly IControlNumberService controlNumberService;
 
-        public EANService_Test() {
+        public BarcodeService_Test() {
             this.controlNumberService = new ControlNumberService();
-            this.service = new EANService(this.controlNumberService);
+            this.service = new BarcodeService(new EAN8Service(controlNumberService), new EAN13Service(controlNumberService));
         }
 
         //TODO get TestCases from file with EAN8 and EAN13 sets of data
