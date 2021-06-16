@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace BarcodeScanner.Models
 {
-    public class BaseModel
+    public class BarcodeModel
     {
         public string Barcode { get; set; }
+        public BarcodeType BarcodeType { get; set; }
 
-        public BaseModel() {
-
+        public BarcodeModel() {
         }
 
-        public BaseModel(string barcode) {
+        public BarcodeModel(string barcode, BarcodeType barcodeType){
             Barcode = barcode;
+            BarcodeType = barcodeType;
         }
     }
 }

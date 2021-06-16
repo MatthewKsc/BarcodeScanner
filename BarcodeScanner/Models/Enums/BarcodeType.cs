@@ -1,5 +1,5 @@
 ﻿namespace BarcodeScanner.Models {
-    public enum EANTypes {
+    public enum BarcodeType {
         None,
         EAN8,
         EAN13

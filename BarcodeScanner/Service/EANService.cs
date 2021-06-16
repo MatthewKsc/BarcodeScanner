@@ -16,21 +16,21 @@ namespace BarcodeScanner.Service
             this.controlNumberService = controlNumberService;
         }
 
-        public List<EAN> GetEAN() {
-            List<EAN> EANs = new List<EAN>() {
-                new EAN{Barcode= "265792032008" ,EANType= EANTypes.EAN13},
-                new EAN{Barcode= "3702235451288" ,EANType= EANTypes.EAN13},
-                new EAN{Barcode= "90733383" ,EANType= EANTypes.EAN8},
-                new EAN{Barcode= "55056533" ,EANType= EANTypes.EAN8}
+        public List<BarcodeModel> GetEAN() {
+            List<BarcodeModel> EANs = new List<BarcodeModel>() {
+                new BarcodeModel{Barcode= "265792032008" ,BarcodeType= BarcodeType.EAN13},
+                new BarcodeModel{Barcode= "3702235451288" ,BarcodeType= BarcodeType.EAN13},
+                new BarcodeModel{Barcode= "90733383" ,BarcodeType= BarcodeType.EAN8},
+                new BarcodeModel{Barcode= "55056533" ,BarcodeType= BarcodeType.EAN8}
             };
 
             return EANs;
         }
 
-        public bool Scan(EAN input) {
+        public bool Scan(BarcodeModel input) {
             StringBuilder EANstring = new StringBuilder().Append(input.Barcode);
 
-            if(input.EANType == EANTypes.EAN8) {
+            if(input.BarcodeType == BarcodeType.EAN8) {
                 
                 if(EANstring.Length == 7) {
                     EANstring.Insert(0, "0");
@@ -47,7 +47,7 @@ namespace BarcodeScanner.Service
 
             }
 
-            if(input.EANType == EANTypes.EAN13) {
+            if(input.BarcodeType == BarcodeType.EAN13) {
 
                 if(EANstring.Length == 12) {
                     EANstring.Insert(0, "0");

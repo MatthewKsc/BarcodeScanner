@@ -12,11 +12,11 @@ namespace BarcodeScanner.Extensions
     public class MappingProfiles : Profile{
         
         public MappingProfiles() {
-            CreateMap<EAN, EANDto>()
-                .ForMember(e => e.Type, d => d.MapFrom(s => s.EANType.ToString("g")));
+            CreateMap<BarcodeModel, BarcodeModelDto>()
+                .ForMember(e => e.Type, d => d.MapFrom(s => s.BarcodeType.ToString("g")));
 
-            CreateMap<EANDto, EAN>()
-                .ForMember(e => e.EANType, d => d.MapFrom(s => Enum.Parse(typeof(EANTypes), s.Type, true)));
+            CreateMap<BarcodeModelDto, BarcodeModel>()
+                .ForMember(e => e.BarcodeType, d => d.MapFrom(s => Enum.Parse(typeof(BarcodeType), s.Type, true)));
         }
 
     }

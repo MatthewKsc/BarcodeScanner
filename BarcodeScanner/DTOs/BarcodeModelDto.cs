@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BarcodeScanner.DTOs
 {
-    public class EANDto
+    public class BarcodeModelDto
     {
         public string Barcode { get; set; }
         public string Type { get; set; }

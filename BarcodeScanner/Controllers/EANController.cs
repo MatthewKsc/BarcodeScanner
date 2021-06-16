@@ -25,20 +25,20 @@ namespace BarcodeScanner.Controllers
 
         [HttpGet]
         public ActionResult exampleEAN() {
-            List<EAN> exampleEAN = service.GetEAN();
+            List<BarcodeModel> exampleEAN = service.GetEAN();
 
-            List<EANDto> result = mapper.Map<List<EANDto>>(exampleEAN);
+            List<BarcodeModelDto> result = mapper.Map<List<BarcodeModelDto>>(exampleEAN);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult checkEAN([FromBody] EANDto dto) {
+        public ActionResult checkEAN([FromBody] BarcodeModelDto dto) {
 
             if (string.IsNullOrEmpty(dto.Barcode) || string.IsNullOrWhiteSpace(dto.Barcode))
                 return BadRequest("Please provide EAN code");
 
-            var ean = mapper.Map<EAN>(dto);
+            var ean = mapper.Map<BarcodeModel>(dto);
 
             var result = service.Scan(ean);
 

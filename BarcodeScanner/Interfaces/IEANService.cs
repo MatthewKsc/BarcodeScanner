@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BarcodeScanner.Interfaces
 {
-    public interface IEANService :IBarcodeService<EAN>
+    public interface IEANService :IBarcodeService<BarcodeModel>
     {
-        List<EAN> GetEAN();
+        List<BarcodeModel> GetEAN();
     }
 }

@@ -30,7 +30,7 @@ namespace BardcodeScanner_Tests.ServiceTests
         [TestCase("36455065")]
         [TestCase("8723093")]
         public void Valid_EAN8_Barcode_Test(string barcode) {
-            var ean = new EAN(barcode, EANTypes.EAN8);
+            var ean = new BarcodeModel(barcode, BarcodeType.EAN8);
 
             var result = service.Scan(ean);
 
@@ -44,7 +44,7 @@ namespace BardcodeScanner_Tests.ServiceTests
         [TestCase("dwdaw12345670dwa")]
         [TestCase("36455064")]
         public void Invalid_EAN8_Barcode_Test(string barcode) {
-            var ean = new EAN(barcode, EANTypes.EAN8);
+            var ean = new BarcodeModel(barcode, BarcodeType.EAN8);
 
             var result = service.Scan(ean);
 
@@ -58,7 +58,7 @@ namespace BardcodeScanner_Tests.ServiceTests
         [TestCase("691536044738")]
         [TestCase("953053302624")]
         public void Valid_EAN13_Test(string barcode) {
-            var ean = new EAN(barcode, EANTypes.EAN13);
+            var ean = new BarcodeModel(barcode, BarcodeType.EAN13);
 
             var result = service.Scan(ean);
 
@@ -72,7 +72,7 @@ namespace BardcodeScanner_Tests.ServiceTests
         [TestCase("dwdaw7192131489335dwa")]
         [TestCase("4427328265695")]
         public void Invalid_EAN8_Test(string barcode) {
-            var ean = new EAN(barcode, EANTypes.EAN13);
+            var ean = new BarcodeModel(barcode, BarcodeType.EAN13);
 
             var result = service.Scan(ean);
 
@@ -82,7 +82,7 @@ namespace BardcodeScanner_Tests.ServiceTests
 
         [Test]
         public void None_Type_EAN_Test() {
-            var eanNoType = new EAN("", EANTypes.None);
+            var eanNoType = new BarcodeModel("", BarcodeType.None);
 
             var result = service.Scan(eanNoType);
 
