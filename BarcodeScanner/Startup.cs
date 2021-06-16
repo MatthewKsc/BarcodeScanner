@@ -25,8 +25,10 @@ namespace BarcodeScanner {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
 
-            services.AddScoped<IEANService, EANService>();
+            services.AddScoped<IBarcodeService, BarcodeService>();
             services.AddScoped<IControlNumberService, ControlNumberService>();
+            services.AddScoped<IEAN13Service, EAN13Service>();
+            services.AddScoped<EAN8Service, EAN8Service>();
 
             services.AddAutoMapper(this.GetType().Assembly);
 
