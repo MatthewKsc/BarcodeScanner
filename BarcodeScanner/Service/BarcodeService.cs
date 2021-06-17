@@ -13,16 +13,19 @@ namespace BarcodeScanner.Service
 
         private readonly IEAN8Service ean8Service;
         private readonly IEAN13Service ean13Service;
+        private readonly IITF14Service itf14Service;
 
-        public BarcodeService(IEAN8Service ean8Service, IEAN13Service ean13Service) {
+        public BarcodeService(IEAN8Service ean8Service, IEAN13Service ean13Service, IITF14Service itf14Service) {
             this.ean8Service = ean8Service;
             this.ean13Service = ean13Service;
+            this.itf14Service = itf14Service;
         }
 
         public List<BarcodeModel> GetBarcodes(BarcodeType barcodeType) {
             switch (barcodeType) {
                 case BarcodeType.EAN13: return ean13Service.GetBarcodes();
                 case BarcodeType.EAN8: return ean8Service.GetBarcodes();
+                case BarcodeType.ITF14: return itf14Service.GetBarcodes();
                 default: throw new ArgumentException("Wrong barcode type provided");
             }
         }
@@ -32,6 +35,7 @@ namespace BarcodeScanner.Service
             switch (input.BarcodeType) {
                 case BarcodeType.EAN13: return ean13Service.Scan(input);
                 case BarcodeType.EAN8: return ean8Service.Scan(input);
+                case BarcodeType.ITF14: return itf14Service.Scan(input);
                 case BarcodeType.None: return false;
                 default: return false;
             }

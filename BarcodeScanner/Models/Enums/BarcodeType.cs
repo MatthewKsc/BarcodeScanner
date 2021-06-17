@@ -2,6 +2,7 @@
     public enum BarcodeType {
         None,
         EAN8,
-        EAN13
+        EAN13,
+        ITF14
     }
 }
