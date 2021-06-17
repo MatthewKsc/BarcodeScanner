@@ -37,9 +37,9 @@ namespace BarcodeScanner.Service {
                     EANstring.Insert(0, "0");
                 }
 
-                Regex EAN8Check = new Regex("^[0-9]{13}$");
+                Regex EAN13Check = new Regex("^[0-9]{13}$");
 
-                if (EAN8Check.IsMatch(EANstring.ToString())) {
+                if (EAN13Check.IsMatch(EANstring.ToString())) {
                     return controlNumberService.CheckControlNumber(EANstring.ToString().Substring(0, 13));
                 }
                 else {

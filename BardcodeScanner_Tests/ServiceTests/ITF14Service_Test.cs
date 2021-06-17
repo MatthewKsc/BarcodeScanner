@@ -37,7 +37,7 @@ namespace BardcodeScanner_Tests.ServiceTests
         [Test]
         [TestCase("invalids")]
         [TestCase("")]
-        [TestCase("23193631169077")]
+        [TestCase("88128452409012")]
         [TestCase("dwdaw309411dwa")]
         public void Invalid_ITF14_Barcode_Test(string barcode) {
             var ean = new BarcodeModel(barcode, BarcodeType.ITF14);
