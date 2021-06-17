@@ -19,7 +19,11 @@ namespace BardcodeScanner_Tests.ServiceTests
 
         public BarcodeService_Test() {
             this.controlNumberService = new ControlNumberService();
-            this.service = new BarcodeService(new EAN8Service(controlNumberService), new EAN13Service(controlNumberService));
+            this.service = new BarcodeService(
+                new EAN8Service(controlNumberService), 
+                new EAN13Service(controlNumberService),
+                new ITF14Service(controlNumberService)
+            );
         }
 
         //TODO get TestCases from file with EAN8 and EAN13 sets of data
@@ -58,21 +62,16 @@ namespace BardcodeScanner_Tests.ServiceTests
         private List<BarcodeModel> GetBarcodes_Valid() {
             return new List<BarcodeModel>() {
                new BarcodeModel("12345670", BarcodeType.EAN8),
-               new BarcodeModel("3498125", BarcodeType.EAN8),
                new BarcodeModel("5485415953755", BarcodeType.EAN13),
-               new BarcodeModel("691536044738", BarcodeType.EAN13)
+               new BarcodeModel("88761983229816", BarcodeType.ITF14)
             };
         }
 
         private List<BarcodeModel> GetBarcodes_Invalid() {
             return new List<BarcodeModel>() {
                new BarcodeModel("invalids", BarcodeType.EAN8),
-               new BarcodeModel("", BarcodeType.EAN8),
-               new BarcodeModel("dwdaw12345670dwa", BarcodeType.EAN8),
-               new BarcodeModel("36455064", BarcodeType.EAN8),
-               new BarcodeModel("", BarcodeType.EAN13),
-               new BarcodeModel("invalids", BarcodeType.EAN13),
-               new BarcodeModel("4427328265695", BarcodeType.EAN13)
+               new BarcodeModel("4427328265695", BarcodeType.EAN13),
+               new BarcodeModel("88126453212905", BarcodeType.ITF14)
             };
         }
     }
