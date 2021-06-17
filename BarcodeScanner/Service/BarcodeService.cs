@@ -11,10 +11,10 @@ namespace BarcodeScanner.Service
 {
     public class BarcodeService : IBarcodeService {
 
-        private readonly EAN8Service ean8Service;
+        private readonly IEAN8Service ean8Service;
         private readonly IEAN13Service ean13Service;
 
-        public BarcodeService(EAN8Service ean8Service, IEAN13Service ean13Service) {
+        public BarcodeService(IEAN8Service ean8Service, IEAN13Service ean13Service) {
             this.ean8Service = ean8Service;
             this.ean13Service = ean13Service;
         }

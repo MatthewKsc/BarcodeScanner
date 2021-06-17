@@ -25,59 +25,21 @@ namespace BardcodeScanner_Tests.ServiceTests
         //TODO get TestCases from file with EAN8 and EAN13 sets of data
 
         [Test]
-        [TestCase("3498125")]
-        [TestCase("12345670")]
-        [TestCase("36455065")]
-        [TestCase("8723093")]
-        public void Valid_EAN8_Barcode_Test(string barcode) {
-            var ean = new BarcodeModel(barcode, BarcodeType.EAN8);
+        public void Valid_Barcodes_Test() {
+            var barcodes = GetBarcodes_Valid();
 
-            var result = service.Scan(ean);
+            var result = barcodes.TrueForAll(b => service.Scan(b) == true);
 
-            Assert.AreEqual(true, result);
-            Assert.AreNotEqual(false, result);
+            Assert.IsTrue(result);
         }
 
         [Test]
-        [TestCase("invalids")]
-        [TestCase("")]
-        [TestCase("dwdaw12345670dwa")]
-        [TestCase("36455064")]
-        public void Invalid_EAN8_Barcode_Test(string barcode) {
-            var ean = new BarcodeModel(barcode, BarcodeType.EAN8);
+        public void Invalid_Barcodes_Test() {
+            var barcodes = GetBarcodes_Invalid();
 
-            var result = service.Scan(ean);
+            var result = barcodes.TrueForAll(b => service.Scan(b) == true);
 
-            Assert.AreEqual(false, result);
-            Assert.AreNotEqual(true, result);
-        }
-
-        [Test]
-        [TestCase("5485415953755")]
-        [TestCase("1372177298566")]
-        [TestCase("691536044738")]
-        [TestCase("953053302624")]
-        public void Valid_EAN13_Test(string barcode) {
-            var ean = new BarcodeModel(barcode, BarcodeType.EAN13);
-
-            var result = service.Scan(ean);
-
-            Assert.AreEqual(true, result);
-            Assert.AreNotEqual(false, result);
-        }
-
-        [Test]
-        [TestCase("invalids")]
-        [TestCase("")]
-        [TestCase("dwdaw7192131489335dwa")]
-        [TestCase("4427328265695")]
-        public void Invalid_EAN8_Test(string barcode) {
-            var ean = new BarcodeModel(barcode, BarcodeType.EAN13);
-
-            var result = service.Scan(ean);
-
-            Assert.AreEqual(false, result);
-            Assert.AreNotEqual(true, result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -88,6 +50,30 @@ namespace BardcodeScanner_Tests.ServiceTests
 
             Assert.AreEqual(false, result);
             Assert.AreNotEqual(true, result);
+        }
+
+
+
+        //---Data generation---\\
+        private List<BarcodeModel> GetBarcodes_Valid() {
+            return new List<BarcodeModel>() {
+               new BarcodeModel("12345670", BarcodeType.EAN8),
+               new BarcodeModel("3498125", BarcodeType.EAN8),
+               new BarcodeModel("5485415953755", BarcodeType.EAN13),
+               new BarcodeModel("691536044738", BarcodeType.EAN13)
+            };
+        }
+
+        private List<BarcodeModel> GetBarcodes_Invalid() {
+            return new List<BarcodeModel>() {
+               new BarcodeModel("invalids", BarcodeType.EAN8),
+               new BarcodeModel("", BarcodeType.EAN8),
+               new BarcodeModel("dwdaw12345670dwa", BarcodeType.EAN8),
+               new BarcodeModel("36455064", BarcodeType.EAN8),
+               new BarcodeModel("", BarcodeType.EAN13),
+               new BarcodeModel("invalids", BarcodeType.EAN13),
+               new BarcodeModel("4427328265695", BarcodeType.EAN13)
+            };
         }
     }
 }
