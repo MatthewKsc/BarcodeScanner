@@ -3,6 +3,7 @@
         None,
         EAN8,
         EAN13,
-        ITF14
+        ITF14,
+        UPCA
     }
 }
