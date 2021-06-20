@@ -22,7 +22,8 @@ namespace BardcodeScanner_Tests.ServiceTests
             this.service = new BarcodeService(
                 new EAN8Service(controlNumberService), 
                 new EAN13Service(controlNumberService),
-                new ITF14Service(controlNumberService)
+                new ITF14Service(controlNumberService),
+                new UPCAService(controlNumberService)
             );
         }
 

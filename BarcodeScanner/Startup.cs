@@ -30,6 +30,7 @@ namespace BarcodeScanner {
             services.AddScoped<IEAN13Service, EAN13Service>();
             services.AddScoped<IEAN8Service, EAN8Service>();
             services.AddScoped<IITF14Service, ITF14Service>();
+            services.AddScoped<IUPCAService, UPCAService>();
 
             services.AddAutoMapper(this.GetType().Assembly);
 
