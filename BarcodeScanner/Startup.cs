@@ -1,6 +1,4 @@
-using BarcodeScanner.Interfaces;
-using BarcodeScanner.Models;
-using BarcodeScanner.Service;
+using BarcodeScanner.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,15 +22,9 @@ namespace BarcodeScanner {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-
-            services.AddScoped<IBarcodeService, BarcodeService>();
-            services.AddScoped<IControlNumberService, ControlNumberService>();
-            services.AddScoped<IEAN13Service, EAN13Service>();
-            services.AddScoped<IEAN8Service, EAN8Service>();
-            services.AddScoped<IITF14Service, ITF14Service>();
-            services.AddScoped<IUPCAService, UPCAService>();
-
             services.AddAutoMapper(this.GetType().Assembly);
+
+            services.AddServices();
 
             services.AddControllers();
         }
