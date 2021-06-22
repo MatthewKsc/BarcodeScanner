@@ -1,4 +1,6 @@
-﻿using BarcodeScanner.Interfaces;
+﻿using AutoMapper;
+using BarcodeScanner.DTOs;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,9 +16,11 @@ namespace BarcodeScanner.Controllers
     public class ProvideBarcodeController :ControllerBase
     {
         private readonly IBarcodeService barcodeService;
+        private readonly IMapper mapper;
 
-        public ProvideBarcodeController(IBarcodeService barcodeService) {
+        public ProvideBarcodeController(IBarcodeService barcodeService, IMapper mapper) {
             this.barcodeService = barcodeService;
+            this.mapper = mapper;
         }
 
 
@@ -28,7 +32,9 @@ namespace BarcodeScanner.Controllers
 
             BarcodeType type = (BarcodeType) Enum.Parse(typeof(BarcodeType), barcodeType, true);
 
-            var result = barcodeService.GetBarcodes(type);
+            var barcodes = barcodeService.GetBarcodes(type);
+
+            var result = mapper.Map<List<BarcodeModelDto>>(barcodes);
 
             return Ok(result);
         }

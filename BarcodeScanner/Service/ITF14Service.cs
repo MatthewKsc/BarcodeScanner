@@ -1,4 +1,5 @@
-﻿using BarcodeScanner.Interfaces;
+﻿using BarcodeScanner.DataSeeder;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,7 @@ namespace BarcodeScanner.Service
         }
 
         public List<BarcodeModel> GetBarcodes() {
-            return new List<BarcodeModel>() {
-                new BarcodeModel("33013851979966", BarcodeType.ITF14),
-                new BarcodeModel("05814441493650", BarcodeType.ITF14),
-                new BarcodeModel("64104848059744", BarcodeType.ITF14),
-                new BarcodeModel("21661267050882", BarcodeType.ITF14)
-            };
+            return DataLoader.LoadData(BarcodeType.ITF14);
         }
 
         public bool Scan(BarcodeModel input) {

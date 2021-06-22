@@ -1,4 +1,5 @@
-﻿using BarcodeScanner.Interfaces;
+﻿using BarcodeScanner.DataSeeder;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using System;
 using System.Collections.Generic;
@@ -22,12 +23,7 @@ namespace BarcodeScanner.Service
         }
 
         public List<BarcodeModel> GetBarcodes() {
-            return new List<BarcodeModel>() {
-                new BarcodeModel("795608291379", BarcodeType.UPCA),
-                new BarcodeModel("16555801740", BarcodeType.UPCA),
-                new BarcodeModel("451398834577", BarcodeType.UPCA),
-                new BarcodeModel("442937901966", BarcodeType.UPCA)
-            };
+            return DataLoader.LoadData(BarcodeType.UPCA);
         }
 
         public bool Scan(BarcodeModel input) {

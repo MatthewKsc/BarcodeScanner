@@ -1,4 +1,5 @@
-﻿using BarcodeScanner.Interfaces;
+﻿using BarcodeScanner.DataSeeder;
+using BarcodeScanner.Interfaces;
 using BarcodeScanner.Models;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,7 @@ namespace BarcodeScanner.Service
         }
 
         public List<BarcodeModel> GetBarcodes() {
-            return new List<BarcodeModel>() {
-                new BarcodeModel("02915241", BarcodeType.EAN8),
-                new BarcodeModel("71775531", BarcodeType.EAN8),
-                new BarcodeModel("51793807", BarcodeType.EAN8),
-                new BarcodeModel("3498125", BarcodeType.EAN8)
-            };
+            return DataLoader.LoadData(BarcodeType.EAN8);
         }
 
         public bool Scan(BarcodeModel input) {
