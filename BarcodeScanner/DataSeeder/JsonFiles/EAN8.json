@@ -1,0 +1,14 @@
+[
+    { "barcode": "12345670", "barcodeType": 1},
+    { "barcode": "36455065", "barcodeType": 1},
+    { "barcode": "3498125", "barcodeType": 1},
+    { "barcode": "8723093", "barcodeType": 1},
+    { "barcode": "51793807", "barcodeType": 1},
+    { "barcode": "97530022", "barcodeType": 1},
+    { "barcode": "02915241", "barcodeType": 1},
+    { "barcode": "90733383", "barcodeType": 1},
+    { "barcode": "46388063", "barcodeType": 1},
+    { "barcode": "71775531", "barcodeType": 1},
+    { "barcode": "83216947", "barcodeType": 1},
+    { "barcode": "55056533", "barcodeType": 1}
+]
