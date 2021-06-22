@@ -7,10 +7,12 @@ Project Idea is to create website to validate many types of barcodes for example
 * C#
 * .Net Core
 * NUnit
+* AutoMapper
+* Newtonsoft.Json
 
 ##### Tools
 * Visual Studio
-* Visual Studio Code
+* Visual Studio Code / WebStorm
 * Postman
 
 ## Folders and explanation
